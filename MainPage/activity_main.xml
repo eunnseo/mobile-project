@@ -17,13 +17,15 @@
         <Button
             android:id="@+id/btnDonate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Donate"/>
 
         <Button
             android:id="@+id/btnMyPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:text="My Page"/>
     </LinearLayout>
     
     <LinearLayout
