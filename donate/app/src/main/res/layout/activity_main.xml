@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+<!--    레이아웃1 : 아름다운 가게 홈페이지 이동, 홈으로 이동-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnWeb"
+            android:text="기증 목록 확인하기 _ 아름다운 가게 홈페이지"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imgHome"
+            app:srcCompat="@drawable/home_button"
+            android:layout_gravity="end" />
+    </LinearLayout>
+
+<!--    레이아웃2 : 카테고리 체크박스 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvCategory"
+            android:text="카테고리"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_margin="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:id="@+id/check1"
+            android:text="의류"
+            android:textSize="20dp"
+            android:layout_toRightOf="@id/tvCategory"/>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:id="@+id/check2"
+            android:text="영유아 잡화"
+            android:textSize="20dp"
+            android:layout_below="@+id/check1"
+            android:layout_toRightOf="@+id/tvCategory" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:id="@+id/check3"
+            android:text="주방·생활 잡화"
+            android:textSize="20dp"
+            android:layout_below="@+id/check2"
+            android:layout_toRightOf="@+id/tvCategory" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check4"
+            android:text="패션·미용 잡화"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/check1" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check5"
+            android:text="도서·음반"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/check2"
+            android:layout_below="@+id/check1" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check6"
+            android:text="가전"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/check3"
+            android:layout_below="@+id/check2" />
+    </RelativeLayout>
+
+<!--    레이아웃3 : 이름 입력-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvName"
+            android:text="이름"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_margin="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edName"
+            android:layout_toRightOf="@+id/tvName"
+            android:layout_alignBottom="@+id/tvName"/>
+    </RelativeLayout>
+
+<!--    레이아웃4 : 사진 업로드-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPicture"
+            android:text="사진"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_margin="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPicText"
+            android:text="위, 아래, 앞, 위, 왼쪽, 오른쪽 총 6면의 사진을 선택하세요"
+            android:textSize="10dp"
+            android:textColor="#696969"
+            android:layout_toRightOf="@+id/tvPicture" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnUpload"
+            android:text="갤러리에서 가져오기"
+            android:textSize="20dp"
+            android:layout_below="@+id/tvPicText"
+            android:layout_toRightOf="@+id/tvPicture" />
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:id="@+id/imgUpload"-->
+        <!--            android:layout_below="@+id/tvPicture"-->
+        <!--            app:srcCompat="@drawable/upload_button" />-->
+    </RelativeLayout>
+
+
+
+
+<!--    레이아웃5 : 확인-->
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/btnOk"
+        android:text="확인"
+        android:textSize="20dp" />
+</LinearLayout>
