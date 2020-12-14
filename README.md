@@ -23,3 +23,4 @@
 
 * 데이터베이스 관리
   * Android PHP MySQL 예제 - 데이터베이스에 데이터 입력하기, <https://webnautes.tistory.com/828>
+  * Android PHP MySQL 예제 - 데이터베이스에서 데이터를 JSON 형식으로 가져오기, <https://webnautes.tistory.com/829>
