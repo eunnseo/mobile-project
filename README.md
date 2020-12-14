@@ -20,3 +20,6 @@
   * 리스트 뷰 구현, <https://lktprogrammer.tistory.com/163>
   * 리스트 뷰 각각의 클릭 이벤트 설정 방법, <https://baessi.tistory.com/53>
   * 안드로이드 EditText 필터링 검색 구현, <https://blog.naver.com/sungjun818/220427267971>
+
+* 데이터베이스 관리
+  * Android PHP MySQL 예제 - 데이터베이스에 데이터 입력하기, <https://webnautes.tistory.com/828>
