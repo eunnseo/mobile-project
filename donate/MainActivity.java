@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -25,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvName, tvPicture;
-        EditText edName;
-
-        tvName = (TextView) findViewById(R.id.tvName);
-        edName = (EditText) findViewById(R.id.edName) ;
-
 //        레이아웃 1 : 홈페이지 이동
         Button btnWeb;
         btnWeb = (Button) findViewById(R.id.btnWeb);
@@ -45,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        레이아웃 1 : 홈 이동(돌아가기)
+        Button btnHome;
+        btnHome = (Button) findViewById(R.id.btnHome);
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+            }
+        });
 
 
 //        레이아웃 2 : 카테고리 라디오버튼
@@ -81,13 +85,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        레이아웃 3 :
-
+        TextView tvName;
+        EditText edName;
+        String name;
+        tvName = (TextView) findViewById(R.id.tvName);
+        edName = (EditText) findViewById(R.id.edName) ;
+        name = edName.getText().toString();
 
 //        레이아웃 4 :
+        TextView tvPicture;
+        Button btnUpload;
+        tvPicture = (TextView) findViewById(R.id.tvPicture);
+        btnUpload = (Button) findViewById(R.id.btnUpload);
 
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+
+                }
+            }
+        });
 
 //        레이아웃 5 :
-
+        Button btnOk;
+        ImageView imgLogo;
+        btnOk = (Button) findViewById(R.id.btnOk);
+        imgLogo = (ImageView) findViewById(R.id.imgLogo);
 
 
 
