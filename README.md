@@ -7,6 +7,9 @@
 * **당근 마켓**
   * <https://www.daangn.com/>
   
+* RRGGBB(색) 참고
+  * https://www.rapidtables.com/web/color/html-color-codes.html
+
 * 사진 업로드
   * 앨범에서 사진 여러 장 불러오기, <https://namhandong.tistory.com/43>
   * 카메라와 갤러리에서 이미지 가져오기, <https://black-jin0427.tistory.com/120>
