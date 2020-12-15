@@ -66,35 +66,31 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="0dip"-->
-<!--        android:layout_weight="9"-->
-<!--        android:orientation="horizontal">-->
-<!--    </LinearLayout>-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:id="@+id/listView_main_list" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
-    <Button
-        android:layout_margin="2dp"
-        android:id="@+id/button_main_all"
-        android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:layout_height="0dp"
-        android:text="전체보기" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:id="@+id/listView_main_list" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:id="@+id/textView_main_result" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:id="@+id/textView_main_result" />
+
+    </LinearLayout>
 
 </LinearLayout>

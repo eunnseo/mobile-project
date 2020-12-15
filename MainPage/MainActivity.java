@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
     EditText edtSearch;
     Button btnDonate, btnMyPage, btnSearch;
 
-    private static String IP_ADDRESS = "";
+    private static String IP_ADDRESS = "192.168.0.8";
     private static String TAG = "phptest";
 
     private EditText mEditTextName;
     private EditText mEditTextCountry;
     private TextView mTextViewResult;
-    private ArrayList<PersonalData> mArrayList;
+    private ArrayList<ProductData> mArrayList;
     private UsersAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private EditText mEditTextSearchKeyword;
@@ -50,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Main Page");
 
+
         // for intent
         edtSearch = (EditText) findViewById(R.id.edtSearch);
         btnDonate = (Button) findViewById(R.id.btnDonate);
         btnMyPage = (Button) findViewById(R.id.btnMyPage);
         btnSearch = (Button) findViewById(R.id.btnSearch);
+
 
         // RecyclerView
         mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
@@ -68,17 +70,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
-        Button button_all = (Button) findViewById(R.id.button_main_all);
-        button_all.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        mArrayList.clear();
+        mAdapter.notifyDataSetChanged();
 
-                mArrayList.clear();
-                mAdapter.notifyDataSetChanged();
+        GetData task = new GetData();
+        task.execute("http://" + IP_ADDRESS + "/getjson.php", "");
 
-                GetData task = new GetData();
-                task.execute("http://" + IP_ADDRESS + "/getjson.php", "");
-            }
-        });
 
         // for intent
         btnMyPage.setOnClickListener(new View.OnClickListener() {
@@ -202,10 +199,9 @@ public class MainActivity extends AppCompatActivity {
     private void showResult(){
 
         String TAG_JSON="webnautes";
-        String TAG_ID = "id";
         String TAG_NAME = "name";
-        String TAG_COUNTRY ="country";
-
+        String TAG_PRICE ="price";
+        String TAG_STORE_LOC ="store_loc";
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -215,17 +211,17 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-                String id = item.getString(TAG_ID);
                 String name = item.getString(TAG_NAME);
-                String country = item.getString(TAG_COUNTRY);
+                String price = item.getString(TAG_PRICE);
+                String store_loc = item.getString(TAG_STORE_LOC);
 
-                PersonalData personalData = new PersonalData();
+                ProductData productData = new ProductData();
 
-                personalData.setMember_id(id);
-                personalData.setMember_name(name);
-                personalData.setMember_country(country);
+                productData.setMember_name(name);
+                productData.setMember_price(price);
+                productData.setMember_store_loc(store_loc);
 
-                mArrayList.add(personalData);
+                mArrayList.add(productData);
                 mAdapter.notifyDataSetChanged();
             }
 
