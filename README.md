@@ -13,9 +13,10 @@
   * https://www.rapidtables.com/web/color/html-color-codes.html
 
 * 사진 업로드
-  * 앨범에서 사진 여러 장 불러오기, <https://namhandong.tistory.com/43>
   * 카메라와 갤러리에서 이미지 가져오기, <https://black-jin0427.tistory.com/120>
-  * 이미지 가져오기에서 putExtra() 사용방법, <https://namget.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0-ACTIONGETCONTENT-%EC%97%90%EC%84%9C-putExtra-%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95>
+  * 갤러리에서 이미지 불러와 이미지뷰에 보여주기, <https://webnautes.tistory.com/1302>
+  * Android에서 image BLOB MySQL에 저장하기, <https://answerofgod.tistory.com/entry/Android%EC%97%90%EC%84%9C-image-BLOB-MySQL%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0>
+  * MySQL에 저장된 IMAGE BLOB Android에서 보기, <https://answerofgod.tistory.com/717>
 
 * 픽업 날짜 예약
   * 안드로이드 스튜디오 날짜 시간 예약 앱 만들기, <https://ykm1256.tistory.com/68>
