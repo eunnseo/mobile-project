@@ -7,8 +7,9 @@
     tools:context=".MainActivity"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+<!--    레이아웃1 : 카테고리, 예약버튼-->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8" >
 
@@ -22,18 +23,30 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp" />
 
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:id="@+id/dataName"
+            android:text="d"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvCategory"
+            />
+
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/btnCalendar"
             android:background="@drawable/calendar_button"
             android:layout_marginTop="20dp"
-            android:layout_gravity="right" />
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/dataName" />
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+<!--    레이아웃2 : 이름-->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8" >
 
@@ -46,9 +59,20 @@
             android:textColor="#A9A9A9"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
-    </LinearLayout>
 
-    <LinearLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dataName"
+            android:text="d"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvName" />
+    </RelativeLayout>
+
+<!--    레이아웃3 : 가격-->
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.8" >
@@ -62,9 +86,20 @@
             android:textColor="#A9A9A9"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
-    </LinearLayout>
 
-    <LinearLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dataName"
+            android:text="d"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvPrice" />
+    </RelativeLayout>
+
+<!--    레이아웃 4 : 사진(스크롤뷰)-->
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3" >
@@ -78,9 +113,53 @@
             android:textColor="#A9A9A9"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
-    </LinearLayout>
 
-    <LinearLayout
+<!--        스크롤뷰-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvPicture" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img1" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img2" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img3" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img4" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img5" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:id="@+id/img6" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+<!--    레이아웃5 : 매장위치(지도)-->
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3" >
@@ -94,9 +173,22 @@
             android:textColor="#A9A9A9"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
-    </LinearLayout>
 
-    <LinearLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dataName"
+            android:text="d"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvLocation" />
+
+<!--        지도-->
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.7">
@@ -107,7 +199,7 @@
             android:id="@+id/imgLogo"
             android:src="@drawable/logo_image"
             android:layout_marginLeft="285dp" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>
