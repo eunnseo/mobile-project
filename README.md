@@ -25,10 +25,16 @@
   * 갤러리에서 이미지 불러와 이미지뷰에 보여주기, <https://webnautes.tistory.com/1302>
   * Android에서 image BLOB MySQL에 저장하기, <https://answerofgod.tistory.com/entry/Android%EC%97%90%EC%84%9C-image-BLOB-MySQL%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0>
   * MySQL에 저장된 IMAGE BLOB Android에서 보기, <https://answerofgod.tistory.com/717>
+  * Bitmap -> String 변환, String -> Bitmap 변환, <https://youngest-programming.tistory.com/95>
 
 ### Product Details Page
 * 픽업 날짜 예약
-  * 안드로이드 스튜디오 날짜 시간 예약 앱 만들기, <https://ykm1256.tistory.com/68>
+  * Date Picker 띄우기, <https://androman.tistory.com/95>
+  
+* 구글 맵
+  * 구글 맵 사용하기, <https://1d1cblog.tistory.com/115>
+  * 구글 맵에 마커 넣기, <https://1d1cblog.tistory.com/118>
+  * Google Maps Android API 사용 방법 및 예제, <https://webnautes.tistory.com/647>
   
 * 기타
   * RRGGBB(색) 참고, <https://www.rapidtables.com/web/color/html-color-codes.html>
