@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -30,18 +32,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtSearch;
-    Button btnDonate, btnMyPage, btnSearch;
+    Button btnDonate, btnMyPage;
+    String cs;
 
     private static String IP_ADDRESS = "192.168.0.8";
     private static String TAG = "phptest";
 
-    private EditText mEditTextName;
-    private EditText mEditTextCountry;
-    private TextView mTextViewResult;
     private ArrayList<ProductData> mArrayList;
     private UsersAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private EditText mEditTextSearchKeyword;
     private String mJsonString;
 
     @Override
@@ -50,34 +49,50 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Main Page");
 
-
-        // for intent
-        edtSearch = (EditText) findViewById(R.id.edtSearch);
         btnDonate = (Button) findViewById(R.id.btnDonate);
         btnMyPage = (Button) findViewById(R.id.btnMyPage);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
+        edtSearch = (EditText) findViewById(R.id.edtSearch);
 
 
         // RecyclerView
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         mArrayList = new ArrayList<>();
 
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
+
+        // 전체보기버튼 내부 함수 구현
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
         GetData task = new GetData();
         task.execute("http://" + IP_ADDRESS + "/getjson.php", "");
+        //
 
 
-        // for intent
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                System.out.println("onTextChanged");
+                mAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         btnMyPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,
@@ -93,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+    }
 
 
     private class GetData extends AsyncTask<String, Void, String> {
@@ -110,26 +125,18 @@ public class MainActivity extends AppCompatActivity {
                     "Please Wait", null, true, true);
         }
 
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
-            mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
 
-            if (result == null){
-
-                mTextViewResult.setText(errorString);
-            }
-            else {
-
+            if (result != null){
                 mJsonString = result;
                 showResult();
             }
         }
-
 
         @Override
         protected String doInBackground(String... params) {
@@ -137,12 +144,10 @@ public class MainActivity extends AppCompatActivity {
             String serverURL = params[0];
             String postParameters = params[1];
 
-
             try {
 
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -150,12 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "response code - " + responseStatusCode);
@@ -224,8 +227,6 @@ public class MainActivity extends AppCompatActivity {
                 mArrayList.add(productData);
                 mAdapter.notifyDataSetChanged();
             }
-
-
 
         } catch (JSONException e) {
 
