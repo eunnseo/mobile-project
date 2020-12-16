@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,13 +22,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import static android.content.Intent.ACTION_PICK;
 
@@ -40,7 +50,7 @@ public class DonateActivity extends Activity {
     private ImageView imageview1, imageview2, imageview3, imageview4, imageview5, imageview6;
     private int OPTION = 0;
 
-    private TextView mTextViewResult;
+//    private TextView mTextViewResult;
 
     Button btnWeb, btnHome, btnOk;
     EditText edName;
@@ -48,7 +58,8 @@ public class DonateActivity extends Activity {
     RadioButton radiobtn1, radiobtn2, radiobtn3, radiobtn4, radiobtn5, radiobtn6;
     String category, name, donor;
 
-    Bitmap bitmap;
+    String image1, image2, image3, image4, image5, image6;
+    Bitmap bitmap1, bitmap2, bitmap3, bitmap4, bitmap5, bitmap6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +165,7 @@ public class DonateActivity extends Activity {
         btnOk = (Button) findViewById(R.id.btnOk);
 
 
+        // insert data
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog progressDialog;
 
@@ -165,25 +177,26 @@ public class DonateActivity extends Activity {
                         "Please Wait", null, true, true);
             }
 
-
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
 
                 progressDialog.dismiss();
-                mTextViewResult.setText(result);
                 Log.d(TAG, "POST response  - " + result);
-            }
 
+                Toast.makeText(DonateActivity.this,result,Toast.LENGTH_LONG).show();
+            }
 
             @Override
             protected String doInBackground(String... params) {
 
                 String name = (String) params[1];
                 String category = (String) params[2];
+                String donor = (String) params[3];
+                String image1 = (String) params[4];
 
                 String serverURL = (String) params[0];
-                String postParameters = "name=" + name + "&category=" + category + "&donor=" + donor;
+                String postParameters = "name=" + name + "&category=" + category + "&donor=" + donor + "&image1=" + image1;
 
                 try {
                     // POST 방식으로 데이터 전송
@@ -269,11 +282,16 @@ public class DonateActivity extends Activity {
                 donor = "김영희";
 
 
-
-
+                // Image Code
+                image1 = BitmapToString(bitmap1);
+//                image2 = BitmapToString(bitmap2);
+//                image1 = BitmapToString(bitmap1);
+//                image1 = BitmapToString(bitmap1);
+//                image1 = BitmapToString(bitmap1);
+//                image1 = BitmapToString(bitmap1);
 
                 InsertData task = new InsertData();
-                task.execute("http://" + IP_ADDRESS + "/insert.php", name, category, donor);
+                task.execute("http://" + IP_ADDRESS + "/insert.php", name, category, donor, image1);
 
                 edName.setText("");
             }
@@ -289,20 +307,36 @@ public class DonateActivity extends Activity {
     }
 
 
-//    private Bitmap resize(Bitmap bm){
-//        Configuration config=getResources().getConfiguration();
-//        if(config.smallestScreenWidthDp>=800)
-//            bm = Bitmap.createScaledBitmap(bm, 400, 240, true);
-//        else if(config.smallestScreenWidthDp>=600)
-//            bm = Bitmap.createScaledBitmap(bm, 300, 180, true);
-//        else if(config.smallestScreenWidthDp>=400)
-//            bm = Bitmap.createScaledBitmap(bm, 200, 120, true);
-//        else if(config.smallestScreenWidthDp>=360)
-//            bm = Bitmap.createScaledBitmap(bm, 180, 108, true);
-//        else
-//            bm = Bitmap.createScaledBitmap(bm, 160, 96, true);
-//        return bm;
-//    }
+    public static String BitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
+        byte[] bytes = baos.toByteArray();
+        String image = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+        String temp = "";
+        try{
+            temp = URLEncoder.encode(image,"utf-8");
+        }catch (Exception e){
+            Log.e("exception",e.toString());
+        }
+
+        return temp;
+    }
+
+    private Bitmap resize(Bitmap bm){
+        Configuration config=getResources().getConfiguration();
+        if(config.smallestScreenWidthDp>=800)
+            bm = Bitmap.createScaledBitmap(bm, 400, 240, true);
+        else if(config.smallestScreenWidthDp>=600)
+            bm = Bitmap.createScaledBitmap(bm, 300, 180, true);
+        else if(config.smallestScreenWidthDp>=400)
+            bm = Bitmap.createScaledBitmap(bm, 200, 120, true);
+        else if(config.smallestScreenWidthDp>=360)
+            bm = Bitmap.createScaledBitmap(bm, 180, 108, true);
+        else
+            bm = Bitmap.createScaledBitmap(bm, 160, 96, true);
+        return bm;
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -313,17 +347,21 @@ public class DonateActivity extends Activity {
             switch(OPTION) {
                 case 1:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview1.setImageBitmap(bitmap);
+                        bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap1 = resize(bitmap1);
+                        imageview1.setImageBitmap(bitmap1);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (OutOfMemoryError e){
+                        Toast.makeText(getApplicationContext(), "이미지 용량이 너무 큽니다.", Toast.LENGTH_SHORT).show();
                     }
 //                    imageview1.setImageURI(selectedImageUri);
                     break;
                 case 2:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview2.setImageBitmap(bitmap);
+                        bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap2 = resize(bitmap2);
+                        imageview2.setImageBitmap(bitmap2);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -331,8 +369,9 @@ public class DonateActivity extends Activity {
                     break;
                 case 3:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview3.setImageBitmap(bitmap);
+                        bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap3 = resize(bitmap3);
+                        imageview3.setImageBitmap(bitmap3);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -340,8 +379,9 @@ public class DonateActivity extends Activity {
                     break;
                 case 4:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview4.setImageBitmap(bitmap);
+                        bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap4 = resize(bitmap4);
+                        imageview4.setImageBitmap(bitmap4);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -349,8 +389,9 @@ public class DonateActivity extends Activity {
                     break;
                 case 5:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview5.setImageBitmap(bitmap);
+                        bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap5 = resize(bitmap5);
+                        imageview5.setImageBitmap(bitmap5);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -358,8 +399,9 @@ public class DonateActivity extends Activity {
                     break;
                 case 6:
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        imageview6.setImageBitmap(bitmap);
+                        bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        bitmap6 = resize(bitmap6);
+                        imageview6.setImageBitmap(bitmap6);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -368,31 +410,6 @@ public class DonateActivity extends Activity {
             }
         }
 
-
-
-
-//        Intent intent=new Intent();
-//        Bitmap bm;
-//        if(resultCode==RESULT_OK){
-//            try {
-//                bm = MediaStore.Images.Media.getBitmap( getContentResolver(), data.getData());
-//                bm=resize(bm);
-//                intent.putExtra("bitmap",bm);
-//            } catch (FileNotFoundException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }catch(OutOfMemoryError e){
-//                Toast.makeText(getApplicationContext(), "이미지 용량이 너무 큽니다.", Toast.LENGTH_SHORT).show();
-//            }
-//            setResult(RESULT_OK, intent);
-//            finish();
-//        }else{
-//            setResult(RESULT_CANCELED, intent);
-//            finish();
-//        }
     }
 
 }
