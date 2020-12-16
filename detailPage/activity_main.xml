@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical" >
 
-<!--    레이아웃1 : 카테고리, 예약버튼-->
+<!--    레이아웃1 : 카테고리, 홈버튼-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,13 +35,15 @@
             />
 
         <Button
+            android:id="@+id/btnHome"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/btnCalendar"
-            android:background="@drawable/calendar_button"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/dataName" />
+            android:background="@drawable/home_button"
+            android:layout_toRightOf="@+id/dataName"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp" />
+
+
     </RelativeLayout>
 
 <!--    레이아웃2 : 이름-->
@@ -63,7 +65,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/dataName"
+            android:id="@+id/dataName1"
             android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
@@ -90,7 +92,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/dataName"
+            android:id="@+id/dataName2"
             android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
@@ -107,7 +109,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPicture"
+            android:id="@+id/tvPicture1"
             android:text="사진"
             android:textSize="20dp"
             android:textColor="#A9A9A9"
@@ -120,7 +122,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/tvPicture" >
+            android:layout_toRightOf="@+id/tvPicture1" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -167,7 +169,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvLocation"
+            android:id="@+id/tvLocation1"
             android:text="매장위치"
             android:textSize="20dp"
             android:textColor="#A9A9A9"
@@ -177,21 +179,36 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/dataName"
+            android:id="@+id/dataName3"
             android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/tvLocation" />
+            android:layout_toRightOf="@+id/tvLocation1" />
 
 <!--        지도-->
-
+<!--        <fragment-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/map"-->
+<!--            tools:context=".MapsActivity"-->
+<!--            android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--            android:layout_toRightOf="@id/tvLocation1"-->
+<!--            android:layout_below="@+id/dataName3"/>-->
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.7">
+
+        <Button
+            android:id="@+id/btnCalendar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/calendar_button"
+            android:onClick="showDatePicker" />
 
         <ImageView
             android:layout_width="120dp"
