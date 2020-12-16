@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    레이아웃1 : 아름다운 가게 홈페이지 이동, 홈으로 이동-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnWeb"
+            android:text="기증 목록 확인하기 _ 아름다운 가게 홈페이지"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_button"
+            android:layout_toRightOf="@+id/btnWeb"
+            android:layout_alignBottom="@+id/btnWeb"
+            android:layout_marginLeft="10dp" />
+    </RelativeLayout>
+
+    <!--    레이아웃2 : 카테고리 라디오그룹 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvCategory"
+            android:text="카테고리"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rGroup"
+            android:layout_toRightOf="@+id/tvCategory"
+            android:layout_marginLeft="10dp" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn1"
+                android:text="의류"
+                android:textSize="20dp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn2"
+                android:text="영유아 잡화"
+                android:textSize="20dp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn3"
+                android:text="주방·생활 잡화"
+                android:textSize="20dp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn4"
+                android:text="패션·미용 잡화"
+                android:textSize="20dp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn5"
+                android:text="도서·음반"
+                android:textSize="20dp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radiobtn6"
+                android:text="가전"
+                android:textSize="20dp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <!--    레이아웃3 : 이름 입력-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvName"
+            android:text="이름"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="30dp"
+            android:id="@+id/edName"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tvName" />
+    </RelativeLayout>
+
+    <!--    레이아웃4 : 사진 업로드-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPicture"
+            android:text="사진"
+            android:textSize="20dp"
+            android:textColor="#A9A9A9"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPicText"
+            android:text="위, 아래, 앞, 위, 왼쪽, 오른쪽 총 6면의 사진을 선택하세요"
+            android:textSize="10dp"
+            android:textColor="#696969"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@+id/tvPicture" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/tvPicture"
+            android:layout_below="@+id/tvPicText"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:layout_below="@+id/tvPicText"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_below="@+id/tvPicText"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/tvPicture"
+            android:layout_below="@+id/imageView1"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/imageView4"
+            android:layout_below="@+id/imageView2"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/imageView5"
+            android:layout_below="@+id/imageView3"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/upload_button" />
+    </RelativeLayout>
+
+    <!--    레이아웃5 : 확인, 로고-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.7">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnOk"
+            android:text="확인"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp" />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgLogo"
+            android:src="@drawable/logo_image"
+            android:layout_marginLeft="160dp"/>
+    </LinearLayout>
+
+</LinearLayout>
