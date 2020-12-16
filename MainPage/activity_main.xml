@@ -44,7 +44,11 @@
         </EditText>
 
         // 돋보기 이미지 추가
-
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/search_button" />
+        
     </LinearLayout>
 
     <LinearLayout
