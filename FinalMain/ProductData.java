@@ -11,6 +11,11 @@ public class ProductData {
     private String member_store_loc;
     private String member_reservation;
     private Bitmap member_image1;
+    private Bitmap member_image2;
+    private Bitmap member_image3;
+//    private Bitmap member_image4;
+//    private Bitmap member_image5;
+//    private Bitmap member_image6;
 
     public String getMember_id() {
         return member_id;
@@ -40,6 +45,20 @@ public class ProductData {
         return member_image1;
     }
 
+    public Bitmap getMember_image2() {
+        return member_image2;
+    }
+
+    public Bitmap getMember_image3() {
+        return member_image3;
+    }
+
+//    public Bitmap getMember_image4() { return member_image4; }
+//
+//    public Bitmap getMember_image5() { return member_image5; }
+//
+//    public Bitmap getMember_image6() { return member_image6; }
+
     public void setMember_id(String member_id) {
         this.member_id = member_id;
     }
@@ -59,4 +78,14 @@ public class ProductData {
     public void setMember_reservation(String member_reservation) { this.member_reservation = member_reservation; }
 
     public void setMember_image1(Bitmap member_image1) { this.member_image1 = member_image1; }
+
+    public void setMember_image2(Bitmap member_image2) { this.member_image2 = member_image2; }
+
+    public void setMember_image3(Bitmap member_image3) { this.member_image3 = member_image3; }
+
+//    public void setMember_image4(Bitmap member_image4) { this.member_image4 = member_image4; }
+//
+//    public void setMember_image5(Bitmap member_image5) { this.member_image5 = member_image5; }
+//
+//    public void setMember_image6(Bitmap member_image6) { this.member_image6 = member_image6; }
 }

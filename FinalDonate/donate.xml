@@ -92,7 +92,7 @@
         </RadioGroup>
     </RelativeLayout>
 
-    <!--    레이아웃3 : 이름 입력-->
+    <!--    레이아웃3 : 상품 이름 입력-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -110,8 +110,8 @@
             android:layout_alignParentTop="true" />
 
         <EditText
-            android:layout_width="320dp"
-            android:layout_height="30dp"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
             android:id="@+id/edName"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/tvName" />

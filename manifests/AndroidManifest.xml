@@ -20,6 +20,7 @@
 
         <activity android:name = ".MypageActivity" android:label ="My Page"/>
         <activity android:name = ".DonateActivity" android:label ="Donate"/>
+        <activity android:name = ".DetailActivity" android:label ="Detail"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

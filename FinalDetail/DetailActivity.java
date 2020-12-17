@@ -1,8 +1,10 @@
 package com.cookandroid.teamproject;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,27 +22,42 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.detail);
 
 
+        String category = "";
         String name = "";
         String price = "";
         String store_loc = "";
+        Bitmap image1, image2, image3;
 
         Bundle extras = getIntent().getExtras();
 
+        // 메인 페이지에서 인텐트로 받은 데이터 가져오기
+        category = extras.getString("category");
         name = extras.getString("name");
         price = extras.getString("price");
         store_loc = extras.getString("store_loc");
 
+        image1 = (Bitmap) extras.get("image1");
+        image2 = (Bitmap) extras.get("image2");
+        image3 = (Bitmap) extras.get("image3");
 
-//        TextView textView = (TextView) findViewById(R.id.textView_result);
+        TextView dataName1 = (TextView) findViewById(R.id.dataName1);
         TextView dataName2 = (TextView) findViewById(R.id.dataName2);
         TextView dataName3 = (TextView) findViewById(R.id.dataName3);
         TextView dataName4 = (TextView) findViewById(R.id.dataName4);
 
-//        String str = name + '\n' + price + '\n' + store_loc;
-//        textView.setText(str);
-        dataName2.setText(name + '\n');
-        dataName3.setText(price + '\n');
-        dataName4.setText(store_loc + '\n');
+        ImageView img1 = (ImageView) findViewById(R.id.img1);
+        ImageView img2 = (ImageView) findViewById(R.id.img2);
+        ImageView img3 = (ImageView) findViewById(R.id.img3);
+
+        // 데이터 세팅
+        dataName1.setText(category);
+        dataName2.setText(name);
+        dataName3.setText(price);
+        dataName4.setText(store_loc);
+
+        img1.setImageBitmap(image1);
+        img2.setImageBitmap(image2);
+        img3.setImageBitmap(image3);
 
 
         // 홈으로 돌아가기
@@ -52,6 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    // 예약
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragement();
         newFragment.show(getSupportFragmentManager(),"datePicker");

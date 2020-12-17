@@ -24,7 +24,6 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:id="@+id/dataName1"
-            android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
@@ -61,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/dataName2"
-            android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
@@ -88,7 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/dataName3"
-            android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
@@ -136,18 +133,6 @@
                     android:layout_width="220dp"
                     android:layout_height="220dp"
                     android:id="@+id/img3" />
-                <ImageView
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:id="@+id/img4" />
-                <ImageView
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:id="@+id/img5" />
-                <ImageView
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:id="@+id/img6" />
 
             </LinearLayout>
 
@@ -175,13 +160,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/dataName4"
-            android:text="d"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tvLocation1" />
-
-        <!--        지도-->
 
     </RelativeLayout>
 

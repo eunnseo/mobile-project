@@ -43,8 +43,7 @@ import java.util.Dictionary;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtSearch;
-    Button btnDonate, btnMyPage;
-    String cs;
+    Button btnDonate, btnMyPage, btnRefresh;
 
     private static String IP_ADDRESS = "192.168.0.8";
     private static String TAG = "phptest";
@@ -62,29 +61,25 @@ public class MainActivity extends AppCompatActivity {
 
         btnDonate = (Button) findViewById(R.id.btnDonate);
         btnMyPage = (Button) findViewById(R.id.btnMyPage);
+        btnRefresh = (Button) findViewById(R.id.btnRefresh);
         edtSearch = (EditText) findViewById(R.id.edtSearch);
 
-
-        // RecyclerView
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         mArrayList = new ArrayList<>();
 
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
-
-        // 전체보기버튼 내부 함수 구현
+        // mySQL 데이터 가져오기
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
         GetData task = new GetData();
         task.execute("http://" + IP_ADDRESS + "/getjson.php", "");
-        //
 
-
+        // 검색 - 글자가 바뀔 때마다 필터링
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -102,7 +97,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Refresh Button
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // mySQL 데이터 가져오기
+                mArrayList.clear();
+                mAdapter.notifyDataSetChanged();
 
+                GetData task = new GetData();
+                task.execute("http://" + IP_ADDRESS + "/getjson.php", "");
+            }
+        });
+
+        // My Page Button
         btnMyPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,
@@ -111,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Donate Button
         btnDonate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,
@@ -119,19 +127,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // RecyclerView touch event
+        // RecyclerView touch event - Detail Page로 이동, 데이터를 인텐트로 보내줌
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 ProductData product = mArrayList.get(position);
-//                Toast.makeText(getApplicationContext(), product.getMember_name()+' '+product.getMember_price()+' '+product.getMember_store_loc(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), DetailActivity.class);
 
+                intent.putExtra("category", product.getMember_category());
                 intent.putExtra("name", product.getMember_name());
                 intent.putExtra( "price", product.getMember_price());
                 intent.putExtra("store_loc", product.getMember_store_loc());
+                intent.putExtra("image1", product.getMember_image1());
+                intent.putExtra("image2", product.getMember_image2());
+                intent.putExtra("image3", product.getMember_image3());
 
                 startActivity(intent);
             }
@@ -143,11 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    // RecyclerView touch event
     public interface ClickListener {
         void onClick(View view, int position);
         void onLongClick(View view, int position);
     }
 
+    // RecyclerView touch event
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private GestureDetector gestureDetector;
@@ -190,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // GetData
+    // 데이터를 받아옴
     private class GetData extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog;
@@ -277,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // string -> bitmap 변환
     public static Bitmap StringToBitmap(String encodedString) {
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
@@ -288,16 +302,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // mySQL에서 가져온 데이터를 어댑터에 저장
     private void showResult(){
 
         String TAG_JSON="webnautes";
         String TAG_NAME = "name";
+        String TAG_CATEGORY = "category";
+        String TAG_IMAGE1 = "image1";
+        String TAG_IMAGE2 = "image2";
+        String TAG_IMAGE3 = "image3";
         String TAG_PRICE ="price";
         String TAG_STORE_LOC ="store_loc";
-
-        String image1 = "image1";
-        Bitmap getBlob;
+        Bitmap getBlob1, getBlob2, getBlob3;
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -308,16 +324,22 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String name = item.getString(TAG_NAME);
+                String category = item.getString(TAG_CATEGORY);
+                getBlob1 = StringToBitmap(item.getString(TAG_IMAGE1));
+                getBlob2 = StringToBitmap(item.getString(TAG_IMAGE2));
+                getBlob3 = StringToBitmap(item.getString(TAG_IMAGE3));
                 String price = item.getString(TAG_PRICE);
                 String store_loc = item.getString(TAG_STORE_LOC);
-                getBlob = StringToBitmap(item.getString(image1));
 
                 ProductData productData = new ProductData();
 
                 productData.setMember_name(name);
+                productData.setMember_category(category);
+                productData.setMember_image1(getBlob1);
+                productData.setMember_image2(getBlob2);
+                productData.setMember_image3(getBlob3);
                 productData.setMember_price(price);
                 productData.setMember_store_loc(store_loc);
-                productData.setMember_image1(getBlob);
 
                 mArrayList.add(productData);
                 mAdapter.notifyDataSetChanged();

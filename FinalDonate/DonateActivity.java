@@ -47,10 +47,8 @@ public class DonateActivity extends Activity {
     private static String TAG = "phptest";
 
     private final int GET_GALLERY_IMAGE = 200;
-    private ImageView imageview1, imageview2, imageview3, imageview4, imageview5, imageview6;
+    private ImageView imageview1, imageview2, imageview3;
     private int OPTION = 0;
-
-//    private TextView mTextViewResult;
 
     Button btnWeb, btnHome, btnOk;
     EditText edName;
@@ -58,8 +56,8 @@ public class DonateActivity extends Activity {
     RadioButton radiobtn1, radiobtn2, radiobtn3, radiobtn4, radiobtn5, radiobtn6;
     String category, name, donor;
 
-    String image1, image2, image3, image4, image5, image6;
-    Bitmap bitmap1, bitmap2, bitmap3, bitmap4, bitmap5, bitmap6;
+    String image1, image2, image3;
+    Bitmap bitmap1, bitmap2, bitmap3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,16 +87,13 @@ public class DonateActivity extends Activity {
         radiobtn5 = (RadioButton) findViewById(R.id.radiobtn5);
         radiobtn6 = (RadioButton) findViewById(R.id.radiobtn6);
 
-        //        레이아웃 3 :
+        //        레이아웃 3 : 상품 이름 입력
         edName = (EditText) findViewById(R.id.edName);
 
-        //        레이아웃 4 :
+        //        레이아웃 4 : 이미지 업로드
         imageview1 = (ImageView)findViewById(R.id.imageView1);
         imageview2 = (ImageView)findViewById(R.id.imageView2);
         imageview3 = (ImageView)findViewById(R.id.imageView3);
-        imageview4 = (ImageView)findViewById(R.id.imageView4);
-        imageview5 = (ImageView)findViewById(R.id.imageView5);
-        imageview6 = (ImageView)findViewById(R.id.imageView6);
 
         imageview1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -130,42 +125,12 @@ public class DonateActivity extends Activity {
             }
         });
 
-        imageview4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                OPTION = 4;
 
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent. setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(intent, GET_GALLERY_IMAGE);
-            }
-        });
-
-        imageview5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                OPTION = 5;
-
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent. setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(intent, GET_GALLERY_IMAGE);
-            }
-        });
-
-        imageview6.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                OPTION = 6;
-
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent. setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(intent, GET_GALLERY_IMAGE);
-            }
-        });
-
-
-        //        레이아웃 5 :
+        //        레이아웃 5 : 확인 버튼
         btnOk = (Button) findViewById(R.id.btnOk);
 
 
-        // insert data
+        // 데이터를 mySQL에 저장하기 위해 서버에 POST 방식으로 보내줌
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog progressDialog;
 
@@ -194,9 +159,11 @@ public class DonateActivity extends Activity {
                 String category = (String) params[2];
                 String donor = (String) params[3];
                 String image1 = (String) params[4];
+                String image2 = (String) params[5];
+                String image3 = (String) params[6];
 
                 String serverURL = (String) params[0];
-                String postParameters = "name=" + name + "&category=" + category + "&donor=" + donor + "&image1=" + image1;
+                String postParameters = "name=" + name + "&category=" + category + "&donor=" + donor + "&image1=" + image1 + "&image2=" + image2 + "&image3=" + image3;
 
                 try {
                     // POST 방식으로 데이터 전송
@@ -251,12 +218,11 @@ public class DonateActivity extends Activity {
             }
         }
 
-
+        // 확인 버튼 클릭 시 데이터를 넘겨줌
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //카테고리
                 switch (rGroup.getCheckedRadioButtonId()) {
                     case R.id.radiobtn1:
                         category = "의류";
@@ -276,28 +242,24 @@ public class DonateActivity extends Activity {
                     case R.id.radiobtn6:
                         category = "가전";
                         break;
-
                 }
                 name = edName.getText().toString();
                 donor = "김영희";
 
-
-                // Image Code
+                // Image
                 image1 = BitmapToString(bitmap1);
-//                image2 = BitmapToString(bitmap2);
-//                image1 = BitmapToString(bitmap1);
-//                image1 = BitmapToString(bitmap1);
-//                image1 = BitmapToString(bitmap1);
-//                image1 = BitmapToString(bitmap1);
+                image2 = BitmapToString(bitmap2);
+                image3 = BitmapToString(bitmap3);
 
+                // InsertData 인스턴스 생성 및 실행
                 InsertData task = new InsertData();
-                task.execute("http://" + IP_ADDRESS + "/insert.php", name, category, donor, image1);
+                task.execute("http://" + IP_ADDRESS + "/insert.php", name, category, donor, image1, image2, image3);
 
                 edName.setText("");
             }
         });
 
-
+        // 홈버튼 클릭 시 메인 페이지로 되돌아감
         btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -306,8 +268,11 @@ public class DonateActivity extends Activity {
         });
     }
 
-
+    // bitmap -> string 변환
     public static String BitmapToString(Bitmap bitmap) {
+        if (bitmap == null)
+            return "";
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
         byte[] bytes = baos.toByteArray();
@@ -323,6 +288,7 @@ public class DonateActivity extends Activity {
         return temp;
     }
 
+    // 이미지 사이즈 축소
     private Bitmap resize(Bitmap bm){
         Configuration config=getResources().getConfiguration();
         if(config.smallestScreenWidthDp>=800)
@@ -338,6 +304,7 @@ public class DonateActivity extends Activity {
         return bm;
     }
 
+    // 이미지를 앨범에서 가져온 후 실행
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -355,7 +322,6 @@ public class DonateActivity extends Activity {
                     } catch (OutOfMemoryError e){
                         Toast.makeText(getApplicationContext(), "이미지 용량이 너무 큽니다.", Toast.LENGTH_SHORT).show();
                     }
-//                    imageview1.setImageURI(selectedImageUri);
                     break;
                 case 2:
                     try {
@@ -364,8 +330,9 @@ public class DonateActivity extends Activity {
                         imageview2.setImageBitmap(bitmap2);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (OutOfMemoryError e){
+                        Toast.makeText(getApplicationContext(), "이미지 용량이 너무 큽니다.", Toast.LENGTH_SHORT).show();
                     }
-//                    imageview2.setImageURI(selectedImageUri);
                     break;
                 case 3:
                     try {
@@ -374,39 +341,11 @@ public class DonateActivity extends Activity {
                         imageview3.setImageBitmap(bitmap3);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (OutOfMemoryError e){
+                        Toast.makeText(getApplicationContext(), "이미지 용량이 너무 큽니다.", Toast.LENGTH_SHORT).show();
                     }
-//                    imageview3.setImageURI(selectedImageUri);
                     break;
-                case 4:
-                    try {
-                        bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        bitmap4 = resize(bitmap4);
-                        imageview4.setImageBitmap(bitmap4);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-//                    imageview4.setImageURI(selectedImageUri);
-                    break;
-                case 5:
-                    try {
-                        bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        bitmap5 = resize(bitmap5);
-                        imageview5.setImageBitmap(bitmap5);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-//                    imageview5.setImageURI(selectedImageUri);
-                    break;
-                case 6:
-                    try {
-                        bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                        bitmap6 = resize(bitmap6);
-                        imageview6.setImageBitmap(bitmap6);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-//                    imageview6.setImageURI(selectedImageUri);
-                    break;
+
             }
         }
 
