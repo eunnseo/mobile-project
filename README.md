@@ -39,4 +39,5 @@
 * 기타
   * RRGGBB(색) 참고, <https://www.rapidtables.com/web/color/html-color-codes.html>
   * android ImageView에 테두리(border) 넣기, <https://wefu.tistory.com/56>
+  * 우재남, 박길식, 『Android Studio를 활용한 안드로이드 프로그래밍 5판 (Java 사용)』, 한빛아카데미
   
