@@ -31,6 +31,8 @@
 | image6      | blob         | YES  |     | NULL    |                |
 | check_state | int unsigned | NO   |     | 0       |                |
 
+image4~image6은 버그 문제로 사용하지 않음
+
 ### donate table example :
 | id | name                   | category              | donor     | check_state |
 |----|------------------------|-----------------------|-----------|-------------|
@@ -42,7 +44,6 @@
 |  7 | wall-e 인형            | 영유아 잡화           | 김영희    |           0 |
 
 check_state : 검수 상태를 의미. 0은 검수 대기 중, 1은 기증 가능, 2는 기증 불가능
-image4~image6은 버그 문제로 사용하지 않음
 
 ### product table description :
 | Field       | Type         | Null | Key | Default | Extra          |
