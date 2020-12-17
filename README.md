@@ -1,4 +1,5 @@
 # 숭실대학교 모바일프로그래밍 나반 7조 팀프로젝트
+The completed code is located in the Final Directory.
 ## 애플리케이션 기능 설명
 * 판매 상품 검색
 * 상품에 대한 상세정보 확인
