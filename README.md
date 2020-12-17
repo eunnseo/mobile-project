@@ -22,6 +22,7 @@
 | image5      | blob         | YES  |     | NULL    |                |
 | image6      | blob         | YES  |     | NULL    |                |
 | check_state | int unsigned | NO   |     | 0       |                |
+
 **donate table example**
 | id | name                   | category              | donor     | check_state |
 |----|------------------------|-----------------------|-----------|-------------|
@@ -31,6 +32,7 @@
 |  4 | 강아지 티셔츠          | 의류                  | 김영희    |           0 |
 |  6 | 스타벅스 텀블러        | 주방, 생활 잡화       | 김영희    |           0 |
 |  7 | wall-e 인형            | 영유아 잡화           | 김영희    |           0 |
+
 image4~image6은 버그 문제로 사용하지 않음
 
 **product table description**
@@ -40,6 +42,7 @@ image4~image6은 버그 문제로 사용하지 않음
 | price       | int          | NO   |     | NULL    |                |
 | store_loc   | varchar(255) | NO   |     | NULL    |                |
 | reservation | varchar(100) | YES  |     | NULL    |                |
+
 **product table example**
 | id | price  | store_loc          | reservation |
 |----|--------|--------------------|-------------|
