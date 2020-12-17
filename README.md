@@ -8,6 +8,12 @@
 * 아름다운 가게 홈페이지 바로가기
 
 ## 결과 화면
+| 메인 페이지 | 상세정보 페이지 | 상품 검색 |
+|---|---|---|
+|<img width="300" src="https://user-images.githubusercontent.com/55284181/102485744-5e438280-40ab-11eb-96a1-0ddad6e5e352.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102486104-e45fc900-40ab-11eb-9803-0f9252fced45.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102486796-f0985600-40ac-11eb-9cfb-aca9ceb96f74.gif">|
+| **아름다운 가게 홈페이지 바로가기** | **기증 물품에 대한 정보 및 사진 업로드** |
+|<img width="300" src="https://user-images.githubusercontent.com/55284181/102487034-466cfe00-40ad-11eb-9f71-c24a16f0b0ee.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102487755-694be200-40ae-11eb-82ac-bfeaddac0a44.gif">|
+
 
 ## mySQL Database (goodsDB)
 ### donate table description :
@@ -28,13 +34,14 @@
 ### donate table example :
 | id | name                   | category              | donor     | check_state |
 |----|------------------------|-----------------------|-----------|-------------|
-|  1 | 고양이 티셔츠          | 의류                  | 김영희    |           0 |
-|  2 | 강아지 티셔츠          | 의류                  | 김영희    |           0 |
-|  3 | 빨간색 텀블러          | 주방, 생활 잡화       | 김영희    |           0 |
+|  1 | 고양이 티셔츠          | 의류                  | 김영희    |           1 |
+|  2 | 강아지 티셔츠          | 의류                  | 김영희    |           2 |
+|  3 | 빨간색 텀블러          | 주방, 생활 잡화       | 김영희    |           1 |
 |  4 | 강아지 티셔츠          | 의류                  | 김영희    |           0 |
 |  6 | 스타벅스 텀블러        | 주방, 생활 잡화       | 김영희    |           0 |
 |  7 | wall-e 인형            | 영유아 잡화           | 김영희    |           0 |
 
+check_state : 검수 상태를 의미. 0은 검수 대기 중, 1은 기증 가능, 2는 기증 불가능
 image4~image6은 버그 문제로 사용하지 않음
 
 ### product table description :
