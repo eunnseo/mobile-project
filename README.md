@@ -1,6 +1,8 @@
 # 숭실대학교 모바일프로그래밍 나반 7조 팀프로젝트
 The completed code is located in the Final Directory.
 ## 애플리케이션 기능 설명
+어플을 통해 아름다운 가게는 기증 물건 검수 과정을 한 단계 추가하고, 판매 확정된 상품들을 관리한다. 
+상품명, 상품의 사진, 상품 가격, 물건이 입고된 매장 등의 정보를 제공하여 소비자는 어플 내 검색을 통해 자신이 필요한 물건을 얻어낼 수 있다.
 * 판매 상품 검색
 * 상품에 대한 상세정보 확인
 * 기증하고자 하는 물품에 대한 정보 및 사진 업로드
@@ -17,6 +19,7 @@ The completed code is located in the Final Directory.
 
 
 ## mySQL Database (goodsDB)
+어플 사용자가 기증 신청한 물품들을 관리하는 테이블(donate table)과 검수가 끝난 후 판매 가능한 상품들을 관리하는 테이블(product table)이 있다.
 ### donate table description :
 | Field       | Type         | Null | Key | Default | Extra          |
 |-------------|--------------|------|-----|---------|----------------|
