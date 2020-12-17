@@ -7,8 +7,10 @@
 * 상품 픽업 예약
 * 아름다운 가게 홈페이지 바로가기
 
-## mySQL Database (goodsdb)
-**donate table description**
+## 결과 화면
+
+## mySQL Database (goodsDB)
+### donate table description :
 | Field       | Type         | Null | Key | Default | Extra          |
 |-------------|--------------|------|-----|---------|----------------|
 | id          | int          | NO   | PRI | NULL    | auto_increment |
@@ -23,7 +25,7 @@
 | image6      | blob         | YES  |     | NULL    |                |
 | check_state | int unsigned | NO   |     | 0       |                |
 
-**donate table example**
+### donate table example :
 | id | name                   | category              | donor     | check_state |
 |----|------------------------|-----------------------|-----------|-------------|
 |  1 | 고양이 티셔츠          | 의류                  | 김영희    |           0 |
@@ -35,7 +37,7 @@
 
 image4~image6은 버그 문제로 사용하지 않음
 
-**product table description**
+### product table description :
 | Field       | Type         | Null | Key | Default | Extra          |
 |-------------|--------------|------|-----|---------|----------------|
 | id          | int          | NO   | PRI | NULL    | auto_increment |
@@ -43,7 +45,7 @@ image4~image6은 버그 문제로 사용하지 않음
 | store_loc   | varchar(255) | NO   |     | NULL    |                |
 | reservation | varchar(100) | YES  |     | NULL    |                |
 
-**product table example**
+### product table example :
 | id | price  | store_loc          | reservation |
 |----|--------|--------------------|-------------|
 |  1 |   2000 | 관악자명점         | NULL        |
