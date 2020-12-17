@@ -15,7 +15,7 @@ The completed code is located in the Final Directory.
 |---|---|---|
 |<img width="300" src="https://user-images.githubusercontent.com/55284181/102485744-5e438280-40ab-11eb-96a1-0ddad6e5e352.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102486104-e45fc900-40ab-11eb-9803-0f9252fced45.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102486796-f0985600-40ac-11eb-9cfb-aca9ceb96f74.gif">|
 | **아름다운 가게 홈페이지 바로가기** | **기증 물품에 대한 정보 및 사진 업로드** |
-|<img width="300" src="https://user-images.githubusercontent.com/55284181/102487034-466cfe00-40ad-11eb-9f71-c24a16f0b0ee.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102487755-694be200-40ae-11eb-82ac-bfeaddac0a44.gif">|
+|<img width="300" src="https://user-images.githubusercontent.com/55284181/102507470-a1abea00-40c7-11eb-806d-99bb94789367.gif">|<img width="300" src="https://user-images.githubusercontent.com/55284181/102487755-694be200-40ae-11eb-82ac-bfeaddac0a44.gif">|
 
 
 ## mySQL Database (goodsDB)
