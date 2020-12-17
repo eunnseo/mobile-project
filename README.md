@@ -1,4 +1,55 @@
 # 숭실대학교 모바일프로그래밍 나반 7조 팀프로젝트
+## 애플리케이션 기능 설명
+* 판매 상품 검색
+* 상품에 대한 상세정보 확인
+* 기증하고자 하는 물품에 대한 정보 및 사진 업로드
+* 기증 물품 및 판매 상품 데이터 관리
+* 상품 픽업 예약
+* 아름다운 가게 홈페이지 바로가기
+
+## mySQL Database (goodsdb)
+**donate table description**
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(255) | NO   |     | NULL    |                |
+| category    | varchar(255) | NO   |     | NULL    |                |
+| donor       | varchar(100) | NO   |     | NULL    |                |
+| image1      | longblob     | YES  |     | NULL    |                |
+| image2      | longblob     | YES  |     | NULL    |                |
+| image3      | longblob     | YES  |     | NULL    |                |
+| image4      | blob         | YES  |     | NULL    |                |
+| image5      | blob         | YES  |     | NULL    |                |
+| image6      | blob         | YES  |     | NULL    |                |
+| check_state | int unsigned | NO   |     | 0       |                |
+**donate table example**
+| id | name                   | category              | donor     | check_state |
+|----|------------------------|-----------------------|-----------|-------------|
+|  1 | 고양이 티셔츠          | 의류                  | 김영희    |           0 |
+|  2 | 강아지 티셔츠          | 의류                  | 김영희    |           0 |
+|  3 | 빨간색 텀블러          | 주방, 생활 잡화       | 김영희    |           0 |
+|  4 | 강아지 티셔츠          | 의류                  | 김영희    |           0 |
+|  6 | 스타벅스 텀블러        | 주방, 생활 잡화       | 김영희    |           0 |
+|  7 | wall-e 인형            | 영유아 잡화           | 김영희    |           0 |
+image4~image6은 버그 문제로 사용하지 않음
+
+**product table description**
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| price       | int          | NO   |     | NULL    |                |
+| store_loc   | varchar(255) | NO   |     | NULL    |                |
+| reservation | varchar(100) | YES  |     | NULL    |                |
+**product table example**
+| id | price  | store_loc          | reservation |
+|----|--------|--------------------|-------------|
+|  1 |   2000 | 관악자명점         | NULL        |
+|  2 |   2000 | 관악자명점         | 2020/12/17  |
+|  3 |   3000 | 신대방점           | NULL        |
+|  4 |   2000 | 관악자명점         | NULL        |
+|  6 |   4000 | 양재점             | NULL        |
+|  7 |   1000 | 압구정점           | NULL        |
+
 ## Appendix - 참조 링크
 
 * **아름다운 가게**
@@ -9,12 +60,10 @@
 ### Main Page
 * RecyclerView 구현
   * RecyclerView로 목록 만들기, <https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=ko>
-  
 * 검색을 위한 필터링 구현
   * 안드로이드 EditText 필터링 검색 구현, <https://blog.naver.com/sungjun818/220427267971>
   * 리사이클러뷰 필터 사용하기, <https://m.blog.naver.com/PostView.nhn?blogId=rkswlrbduf&logNo=221208233990&proxyReferer=https:%2F%2Fwww.google.com%2F>
   * 안드로이드 커스텀 리스트뷰에서 검색된 아이템 보여주기, <https://recipes4dev.tistory.com/96>
-  
 * 데이터베이스 관리
   * Android PHP MySQL 예제 - 데이터베이스에 데이터 입력하기, <https://webnautes.tistory.com/828>
   * Android PHP MySQL 예제 - 데이터베이스에서 데이터를 JSON 형식으로 가져오기, <https://webnautes.tistory.com/829>
@@ -30,12 +79,10 @@
 ### Product Details Page
 * 픽업 날짜 예약
   * Date Picker 띄우기, <https://androman.tistory.com/95>
-  
 * 구글 맵
   * 구글 맵 사용하기, <https://1d1cblog.tistory.com/115>
   * 구글 맵에 마커 넣기, <https://1d1cblog.tistory.com/118>
   * Google Maps Android API 사용 방법 및 예제, <https://webnautes.tistory.com/647>
-  
 * 기타
   * RRGGBB(색) 참고, <https://www.rapidtables.com/web/color/html-color-codes.html>
   * android ImageView에 테두리(border) 넣기, <https://wefu.tistory.com/56>
